@@ -1,9 +1,4 @@
-export function clickPreset(input){
-    return {
-        type: "CLICK_PRESET",
-        payload: {input}
-    }
-}
+import axios from "axios";
 
 export function updateSearchInput(input) {
     return {
@@ -12,9 +7,19 @@ export function updateSearchInput(input) {
     }
 }
 
-export function searchBtn(input) {
+export const searchBtn = (input) => {
     return {
         type: "SEARCH_BTN",
-        payload: {input}
+        payload: axios.get(`/weather/${input}`)
+                    .then(res => {
+                        return res.data;
+                    })
+    }
+}
+
+export const searchCache = (obj) => {
+    return {
+        type: "SEARCH_CACHE",
+        payload: obj
     }
 }

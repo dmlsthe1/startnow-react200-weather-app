@@ -1,55 +1,59 @@
 import React from "react";
 
 import {
-    clickPreset,
     updateSearchInput,
-    searchBtn
+    searchBtn,
+    searchCache
 } from "./searchActions"
 
 class Search extends React.Component {
     constructor(props) {
         super(props);
         
-        this.handleClickPreset = this.handleClickPreset.bind(this);
         this.handleUpdateSearchInput = this.handleUpdateSearchInput.bind(this);
         this.handleSearchBtn = this.handleSearchBtn.bind(this);
     }
 
-    handleClickPreset(e){
-        const {dispatch} = this.props;
-        dispatch(ha)
-    }
-
     handleUpdateSearchInput(e){
-        //var id = e.target.id;
         var input = e.target.value;
         const {dispatch} = this.props;
         dispatch(updateSearchInput(input));
     }
 
     handleSearchBtn(e){
-        console.log("btn: ", e.target);
-        const {dispatch} = this.props;
+        var {dispatch, cache, input} = this.props;
+        var date = new Date();
+        if (e.target.name == "options") {
+            input = e.target.value;
+        }
+        if (!input) {
+            return alert("Please enter city");
+        }
+        if (cache.hasOwnProperty(input) && date > cache[input].date) {
+            return dispatch(searchCache(cache[input]));
+        }
+        dispatch(searchBtn(input));
     }
 
     render() {
+        const {weather} = this.props;
         return (
             <div>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                     <label className="btn btn-primary">
-                        <input onClick={this.handleClickPreset} value="San Diego" type="radio" name="options" id="option1" autoComplete="off" />San Diego
+                        <input onClick={this.handleSearchBtn} value="San Diego" type="radio" name="options" id="option1" autoComplete="off" />San Diego
                     </label>
                     <label className="btn btn-primary">
-                        <input onClick={this.handleClickPreset} value="New York" type="radio" name="options" id="option2" autoComplete="off" />New York
+                        <input onClick={this.handleSearchBtn} value="New York" type="radio" name="options" id="option2" autoComplete="off" />New York
                     </label>
                     <label className="btn btn-primary">
-                        <input onClick={this.handleClickPreset} value="Washington D.C." type="radio" name="options" id="option3" autoComplete="off" />Washington D.C.
+                        <input onClick={this.handleSearchBtn} value="District Of Columbia" type="radio" name="options" id="option3" autoComplete="off" />Washington D.C.
                     </label>
                     <label className="btn btn-primary">
-                        <input onClick={this.handleClickPreset} value="London" type="radio" name="options" id="option4" autoComplete="off" />London
+                        <input onClick={this.handleSearchBtn} value="London" type="radio" name="options" id="option4" autoComplete="off" />London
                     </label>
                     <label className="btn btn-primary">
-                        <input onClick={this.handleClickPreset} value="Tokyo" type="radio" name="options" id="option5" autoComplete="off" />Tokyo
+                        <input onClick={this.handleSearchBtn} value="Tokyo" type="radio" name="options" id="option5" autoComplete="off" />Tokyo
                     </label>
                 </div>
 

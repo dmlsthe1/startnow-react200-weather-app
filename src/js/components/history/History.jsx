@@ -1,36 +1,29 @@
 import React from "react";
+import dateFormat from "dateformat";
 
 class History extends React.Component {
     render() {
+        var history = [...this.props.history];
+        history.reverse();
         return (
             <div>
                 <div className="card">
-                    <div className="card-header alert alert-primary">
+                    <div className="card-header text-center alert alert-primary">
                         Search History
                     </div>
                     <div className="container">
                         <table className="table table-striped">
                             <tbody>
-                                <tr>
-                                    <td>San Diego</td>
-                                    <td><div>04/28/2016</div><div>19:04:46</div></td>
-                                </tr>
-                                <tr>
-                                    <td>New York</td>
-                                    <td><div>04/28/2016</div><div>19:04:46</div></td>
-                                </tr>
-                                <tr>
-                                    <td>Washington D.C.</td>
-                                    <td><div>04/28/2016</div><div>19:04:46</div></td>
-                                </tr>
-                                <tr>
-                                    <td>London</td>
-                                    <td><div>04/28/2016</div><div>19:04:46</div></td>
-                                </tr>
-                                <tr>
-                                    <td>Tokyo</td>
-                                    <td><div>04/28/2016</div><div>19:04:46</div></td>
-                                </tr>
+                                {history.map((historyItem, index) => {
+                                    let date = dateFormat(historyItem.date, "mmm-dd-yyyy hh:MM:ss");
+                                    return (
+                                        <tr key={index}>
+                                            <td>{historyItem.input}</td>
+                                            <td>{date}</td>
+                                            <td>{historyItem.success}</td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </div>

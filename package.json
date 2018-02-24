@@ -8,14 +8,18 @@
     "start": "node server/index.js",
     "less": "lessc src/css/style.less dist/css/style.css",
     "lint": "eslint .",
-    "test": "npm run build && mocha test/.setup.js test/*.spec.js"
+    "test": "mocha test/.setup.js test/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.16.1",
     "babel-loader": "^7.1.1",
     "bluebird": "^3.5.0",
     "chai": "^3.5.0",
+    "dateformat": "^3.0.3",
+    "dotenv": "^5.0.0",
+    "dotenv-webpack": "^1.5.4",
     "express": "^4.15.3",
+    "fs": "0.0.1-security",
     "json-loader": "^0.5.4",
     "lodash": "^4.15.0",
     "lodash-webpack-plugin": "^0.10.2",

@@ -14,6 +14,10 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
   },
 
+  node: {
+    fs: "empty"
+  },
+
   resolve: {
     alias: {
       react: path.join(__dirname, 'node_modules', 'react')
