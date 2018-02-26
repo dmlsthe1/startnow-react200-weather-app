@@ -17,7 +17,7 @@ class Weather extends React.Component {
                     </div>
                     <div className="card-body font-weight-bold">
                         <h5 className="card-title">{weather.city ? weather.city.name : weather.loading ? weather.loading : "City Name"}</h5>
-                        <img src={url} alt="weather icon"/>
+                        {url && <img src={url} alt="weather icon"/>}
                         <p className="card-text">Lat/Long: {weather.city ? `${weather.city.coord.lat}, ${weather.city.coord.lon}` : weather.loading}</p>
                     </div>
                     <div className="card-footer">

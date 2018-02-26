@@ -2,7 +2,7 @@ import React from 'react';
 import Weather from "./components/weather";
 import History from "./components/history";
 import Search from "./components/search";
-import Forecast from "./components/forecast"
+import Forecast from "./components/forecast";
 
 export default class App extends React.Component {
   render() {

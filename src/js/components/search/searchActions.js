@@ -12,6 +12,7 @@ export const searchBtn = (input) => {
         type: "SEARCH_BTN",
         payload: axios.get(`/weather/${input}`)
                     .then(res => {
+                        console.log(res.data)
                         return res.data;
                     })
     }
